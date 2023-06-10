@@ -2,10 +2,10 @@ databaseChangeLog:
 
   - changeSet:
       id: v1.0000
-      logicalFilePath: 00000-create-users-table.sql
+      logicalFilePath: 00000-create-person-table.sql
       comment: initial migration
       author: vplatonov
       changes:
         - sqlFile:
-            path: 00000-create-users-table.sql
+            path: 00000-create-person-table.sql
             relativeToChangelogFile: true
