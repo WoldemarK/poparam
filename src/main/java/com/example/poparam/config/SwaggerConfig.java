@@ -20,8 +20,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI openApi() {
         return new OpenAPI()
-                .info(new Info()
-                        .title("Poparam"));
+            .info(new Info()
+                .title("Test Api"));
     }
-
 }
