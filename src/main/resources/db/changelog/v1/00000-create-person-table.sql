@@ -4,11 +4,11 @@ CREATE TABLE if not exists person
     last_name  varchar(255)             not null,
     first_name varchar(255)             not null,
     password   varchar                  not null,
---     email      varchar(255)       not null,
---     last_visit timestamp with time zone not null,
+    email      varchar(255)             not null,
+    last_visit timestamp with time zone not null,
     username   varchar                  not null,
---     updateDate timestamp with time zone not null,
---     createDate timestamp with time zone not null,
+    updateDate timestamp with time zone not null,
+    createDate timestamp with time zone not null,
     role       varchar
 );
 

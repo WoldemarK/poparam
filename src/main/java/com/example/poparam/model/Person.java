@@ -11,6 +11,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
+@Builder
 @Getter
 @Setter
 @ToString
@@ -40,6 +42,7 @@ public class Person implements Serializable {
 
     @Column(name = "username")
     private String username;
+
     @Column(name = "last_name")
     private String lastName;
 
@@ -49,17 +52,17 @@ public class Person implements Serializable {
     @Column(name = "password")
     private String password;
 
-//    @Column(name = "email")
-//    private String email;
+    @Column(name = "email")
+    private String email;
 
-//    @Column(name = "last_visit")
-//    private LocalDateTime lastVisit;
-//
-//    @UpdateTimestamp
-//    private LocalDateTime updateDate;
-//
-//    @CreationTimestamp
-//    private LocalDateTime createDate;
+    @Column(name = "last_visit")
+    private LocalDateTime lastVisit;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
+
+    @CreationTimestamp
+    private LocalDateTime createDate;
 
     @Enumerated(EnumType.STRING)
     protected Role role;
