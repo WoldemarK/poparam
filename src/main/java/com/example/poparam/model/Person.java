@@ -59,9 +59,11 @@ public class Person implements Serializable {
     private LocalDateTime lastVisit;
 
     @UpdateTimestamp
+    @Column(name = "update_date")
     private LocalDateTime updateDate;
 
     @CreationTimestamp
+    @Column(name = "create_date")
     private LocalDateTime createDate;
 
     @Enumerated(EnumType.STRING)

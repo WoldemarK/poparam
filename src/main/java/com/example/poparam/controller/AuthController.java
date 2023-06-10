@@ -59,6 +59,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterUserResponse> register(@RequestBody RegisterUserRequest request) {
         Person person = Person.builder()
+
             .username(request.getUsername())
             .lastName(request.getLastName())
             .firstName(request.getFirstName())
@@ -67,8 +68,8 @@ public class AuthController {
             .lastVisit(LocalDateTime.now())
             .createDate(LocalDateTime.now())
             .updateDate(LocalDateTime.now())
-
             .build();
+
         Person saved = personService.register(person);
         RegisterUserResponse response = new RegisterUserResponse(saved);
 

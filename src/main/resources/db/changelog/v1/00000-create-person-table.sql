@@ -7,8 +7,8 @@ CREATE TABLE if not exists person
     email      varchar(255)             not null,
     last_visit timestamp with time zone not null,
     username   varchar                  not null,
-    updateDate timestamp with time zone not null,
-    createDate timestamp with time zone not null,
+    update_date timestamp with time zone not null,
+    create_date timestamp with time zone not null,
     role       varchar
 );
 
