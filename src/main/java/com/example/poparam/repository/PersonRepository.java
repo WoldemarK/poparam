@@ -1,13 +1,16 @@
 package com.example.poparam.repository;
 
 import com.example.poparam.model.Person;
+import com.example.poparam.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface PersonRepository extends JpaRepository<Person,Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    Optional<Person>findByUsername(String username);
+    Person findBaseUserByUsername(String username);
+
+    @Query("SELECT bu.role FROM Person bu WHERE bu.username = :username")
+    Role getBaseUserRoleByUsername(String username);
 }

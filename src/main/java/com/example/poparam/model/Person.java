@@ -1,28 +1,35 @@
 package com.example.poparam.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "person")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person implements Serializable {
     @Serial
     private static final long serialVersionUID = 1905122041950251207L;
@@ -31,22 +38,31 @@ public class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Имя не должно быть пустым")
-    @Size(min = 2, max = 50,message = "Имя должно быть от 2 до 50 символов")
     @Column(name = "username")
     private String username;
+    @Column(name = "last_name")
+    protected String lastName;
+
+    @Column(name = "first_name")
+    protected String firstName;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "year_of_birth")
-    @Min(value = 2000, message = "Год рождения должен быть больше чем 18 лет")
-    private String yearOfBirth;
+    @Column(name = "email")
+    protected String email;
 
-    public Person(String username, String password, String yearOfBirth) {
-        this.username = username;
-        this.password = password;
-        this.yearOfBirth = yearOfBirth;
-    }
+    @Column(name = "last_visit")
+    private LocalDateTime lastVisit;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
+
+    @CreationTimestamp
+    private LocalDateTime createDate;
+
+    @Enumerated(EnumType.STRING)
+    protected Role role;
+
 
 }
