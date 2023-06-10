@@ -9,6 +9,6 @@ public class RegisterUserRequest {
 
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String last_name;
+    private String first_name;
 }

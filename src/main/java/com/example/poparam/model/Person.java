@@ -41,25 +41,25 @@ public class Person implements Serializable {
     @Column(name = "username")
     private String username;
     @Column(name = "last_name")
-    protected String lastName;
+    private String lastName;
 
     @Column(name = "first_name")
-    protected String firstName;
+    private String firstName;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
-    protected String email;
+//    @Column(name = "email")
+//    private String email;
 
-    @Column(name = "last_visit")
-    private LocalDateTime lastVisit;
-
-    @UpdateTimestamp
-    private LocalDateTime updateDate;
-
-    @CreationTimestamp
-    private LocalDateTime createDate;
+//    @Column(name = "last_visit")
+//    private LocalDateTime lastVisit;
+//
+//    @UpdateTimestamp
+//    private LocalDateTime updateDate;
+//
+//    @CreationTimestamp
+//    private LocalDateTime createDate;
 
     @Enumerated(EnumType.STRING)
     protected Role role;

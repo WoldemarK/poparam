@@ -31,16 +31,17 @@ public class AuthController {
     private final AuthenticationManager manager;
     private final JwtTokenProvider provider;
     private final PersonService userService;
+
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/login")
     public ResponseEntity<Map<Object, Object>> login(@RequestBody AuthUserRequest authUserRequest) {
         try {
             String username = authUserRequest.getUsername();
-            manager.authenticate(new UsernamePasswordAuthenticationToken(username,
-                authUserRequest.getPassword()));
-
+            manager.authenticate(new UsernamePasswordAuthenticationToken
+                (
+                    username, authUserRequest.getPassword())
+            );
             Person person = userService.getByUsername(username);
-
             if (person == null) {
                 throw new UsernameNotFoundException("User with username " + username + " not found");
             }
@@ -53,16 +54,17 @@ public class AuthController {
             throw new BadCredentialsException("Credentials incorrect.");
         }
     }
-
     @PostMapping("/register")
     public ResponseEntity<RegisterUserResponse> register(@RequestBody RegisterUserRequest request) {
         Person person = new Person();
         person.setUsername(request.getUsername());
         person.setPassword(request.getPassword());
-        person.setFirstName(request.getFirstName());
-        person.setLastName(request.getLastName());
-        Person savedUser = userService.register(person);
-        RegisterUserResponse response = new RegisterUserResponse(savedUser);
+        person.setFirstName(request.getFirst_name());
+        person.setLastName(request.getLast_name());
+
+        Person saved = userService.register(person);
+        RegisterUserResponse response = new RegisterUserResponse(saved);
+
         return ResponseEntity.ok(response);
     }
 }
