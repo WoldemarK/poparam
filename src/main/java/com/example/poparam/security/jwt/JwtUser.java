@@ -13,7 +13,6 @@ public class JwtUser implements UserDetails {
     private final String password;
     private final boolean enabled;
     private final GrantedAuthority authorities;
-
     public JwtUser(Long id, String username, String password, boolean enabled, GrantedAuthority authorities) {
         this.id = id;
         this.username = username;

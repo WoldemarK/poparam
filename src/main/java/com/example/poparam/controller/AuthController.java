@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,17 +31,17 @@ public class AuthController {
 
     private final AuthenticationManager manager;
     private final JwtTokenProvider provider;
-    private final PersonService userService;
+    private final PersonService personService;
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/login")
     public ResponseEntity<Map<Object, Object>> login(@RequestBody AuthUserRequest authUserRequest) {
         try {
             String username = authUserRequest.getUsername();
-            manager.authenticate(new UsernamePasswordAuthenticationToken(username,
-                authUserRequest.getPassword()));
-
-            Person person = userService.getByUsername(username);
-
+            manager.authenticate(new UsernamePasswordAuthenticationToken
+                (
+                    username, authUserRequest.getPassword())
+            );
+            Person person = personService.getByUsername(username);
             if (person == null) {
                 throw new UsernameNotFoundException("User with username " + username + " not found");
             }
@@ -53,16 +54,20 @@ public class AuthController {
             throw new BadCredentialsException("Credentials incorrect.");
         }
     }
-
     @PostMapping("/register")
     public ResponseEntity<RegisterUserResponse> register(@RequestBody RegisterUserRequest request) {
-        Person person = new Person();
-        person.setUsername(request.getUsername());
-        person.setPassword(request.getPassword());
-        person.setFirstName(request.getFirstName());
-        person.setLastName(request.getLastName());
-        Person savedUser = userService.register(person);
-        RegisterUserResponse response = new RegisterUserResponse(savedUser);
+        Person person = Person.builder()
+            .username(request.getUsername())
+            .lastName(request.getLastName())
+            .firstName(request.getFirstName())
+            .password(request.getPassword())
+            .email(request.getEmail())
+            .lastVisit(LocalDateTime.now())
+            .createDate(LocalDateTime.now())
+            .updateDate(LocalDateTime.now())
+            .build();
+        Person saved = personService.register(person);
+        RegisterUserResponse response = new RegisterUserResponse(saved);
         return ResponseEntity.ok(response);
     }
 }

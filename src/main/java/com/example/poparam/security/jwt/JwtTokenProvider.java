@@ -37,7 +37,6 @@ public class JwtTokenProvider {
     protected void init() {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
-
     public String createToken(String username, Role role) {
 
         Claims claims = Jwts.claims().setSubject(username);

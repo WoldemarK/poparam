@@ -10,7 +10,6 @@ import java.util.Date;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
-
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public ErrorMessage resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
@@ -20,7 +19,6 @@ public class ControllerExceptionHandler {
             ex.getMessage(),
             request.getDescription(false));
     }
-
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage globalExceptionHandler(Exception ex, WebRequest request) {
