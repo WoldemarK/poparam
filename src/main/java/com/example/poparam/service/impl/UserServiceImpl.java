@@ -30,14 +30,12 @@ public class UserServiceImpl implements PersonService {
         person.setPassword(passwordEncoder.encode(person.getPassword()));
         person.setRole(role);
 
-        Person registeredUser = personRepository.save(person);
-        return registeredUser;
+        return personRepository.save(person);
     }
 
     @Override
     public List<Person> getAllUsers() {
-        List<Person> users = personRepository.findAll();
-        return users;
+        return personRepository.findAll();
     }
 
     @Override
