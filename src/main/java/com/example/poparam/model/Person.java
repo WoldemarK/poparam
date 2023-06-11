@@ -1,4 +1,5 @@
 package com.example.poparam.model;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -15,12 +16,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 @Entity
 @Builder
 @Getter
@@ -56,7 +59,7 @@ public class Person implements Serializable {
     @Column(name = "create_date")
     private LocalDateTime createDate;
     @Enumerated(EnumType.STRING)
-    protected Role role;
+    private Role role;
 
 
 }

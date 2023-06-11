@@ -12,3 +12,4 @@ CREATE TABLE if not exists person
     role       varchar
 );
 
+alter table person add column image varchar(64);

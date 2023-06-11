@@ -2,6 +2,7 @@ package com.example.poparam.dto;
 
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -17,4 +18,5 @@ public class RegisterUserRequest {
     private LocalDateTime lastVisit;
     private LocalDateTime updateDate;
     private LocalDateTime createDate;
+    MultipartFile images;
 }
