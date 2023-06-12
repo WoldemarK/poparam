@@ -2,12 +2,12 @@ version: '3.9'
 services:
   postgres:
     image: postgres:alpine
-    container_name: poparam
+    container_name: opali
     restart: always
     hostname: postgres
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: poparam
+      POSTGRES_DB: opali
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
