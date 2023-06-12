@@ -16,11 +16,11 @@ import java.util.List;
 @RequestMapping("/api/v1/admin")
 public class AdminController {
 
-    private final PersonService userService;
+    private final PersonService personService;
     @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<Person>> getAll(){
-        List<Person> allUsers = userService.getAllUsers();
+        List<Person> allUsers = personService.getAllUsers();
         return ResponseEntity.ok(allUsers);
     }
 }

@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PoparamApplication {
+public class OpaliApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PoparamApplication.class, args);
+        SpringApplication.run(OpaliApplication.class, args);
     }
-
 }

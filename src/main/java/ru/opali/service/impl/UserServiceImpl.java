@@ -16,15 +16,12 @@ import java.util.List;
 public class UserServiceImpl implements PersonService {
     private final PersonRepository personRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
     private final JwtTokenProvider provider;
-
     public UserServiceImpl(PersonRepository personRepository, BCryptPasswordEncoder passwordEncoder, JwtTokenProvider provider) {
         this.personRepository = personRepository;
         this.passwordEncoder = passwordEncoder;
         this.provider = provider;
     }
-
     public Person register(Person person) {
         Role role = Role.USER;
         person.setPassword(passwordEncoder.encode(person.getPassword()));
@@ -32,7 +29,6 @@ public class UserServiceImpl implements PersonService {
 
         return personRepository.save(person);
     }
-
     @Override
     public List<Person> getAllUsers() {
         return personRepository.findAll();

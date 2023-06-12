@@ -1,26 +1,32 @@
-package ru.opali.security;
+package ru.astondevs.motorent.security;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.opali.model.Person;
-import ru.opali.repository.PersonRepository;
-import ru.opali.security.jwt.JwtUserFactory;
+import ru.astondevs.motorent.domain.entity.users.BaseUser;
+import ru.astondevs.motorent.repository.UserRepository;
+import ru.astondevs.motorent.security.jwt.JwtUser;
+import ru.astondevs.motorent.security.jwt.JwtUserFactory;
 
 @Service
-@RequiredArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final PersonRepository personRepository;
+    private final UserRepository userRepository;
+
+    public JwtUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Person user = personRepository.findBaseUserByUsername(username);
+        BaseUser user = userRepository.findBaseUserByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User with name - " + username + "not found");
         }
-        return JwtUserFactory.create(user);
+
+        JwtUser jwtUser = JwtUserFactory.create(user);
+        return jwtUser;
     }
 }

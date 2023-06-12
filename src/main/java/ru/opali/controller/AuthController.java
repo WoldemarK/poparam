@@ -31,7 +31,6 @@ public class AuthController {
     private final AuthenticationManager manager;
     private final JwtTokenProvider provider;
     private final PersonService personService;
-
     @SecurityRequirement(name = "Bearer Authentication")
     @PostMapping("/login")
     public ResponseEntity<Map<Object, Object>> login(@RequestBody AuthUserRequest authUserRequest) {
@@ -54,11 +53,9 @@ public class AuthController {
             throw new BadCredentialsException("Credentials incorrect.");
         }
     }
-
     @PostMapping("/register")
     public ResponseEntity<RegisterUserResponse> register(@RequestBody RegisterUserRequest request) {
         Person person = Person.builder()
-
             .username(request.getUsername())
             .lastName(request.getLastName())
             .firstName(request.getFirstName())
@@ -68,10 +65,8 @@ public class AuthController {
             .createDate(LocalDateTime.now())
             .updateDate(LocalDateTime.now())
             .build();
-
         Person saved = personService.register(person);
         RegisterUserResponse response = new RegisterUserResponse(saved);
-
         return ResponseEntity.ok(response);
     }
 }

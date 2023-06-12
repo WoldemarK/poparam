@@ -22,7 +22,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 @Entity
 @Builder
 @Getter
@@ -39,35 +38,26 @@ public class Person implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "username")
     private String username;
-
     @Column(name = "last_name")
     private String lastName;
-
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "password")
     private String password;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "last_visit")
     private LocalDateTime lastVisit;
-
     @UpdateTimestamp
     @Column(name = "update_date")
     private LocalDateTime updateDate;
-
     @CreationTimestamp
     @Column(name = "create_date")
     private LocalDateTime createDate;
-
     @Enumerated(EnumType.STRING)
-    protected Role role;
+    private Role role;
 
 
 }
