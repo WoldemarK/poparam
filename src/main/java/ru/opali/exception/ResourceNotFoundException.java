@@ -1,4 +1,4 @@
-package com.example.poparam.exception;
+package ru.opali.exception;
 
 import java.io.Serial;
 
